@@ -69,7 +69,7 @@ export class AuthService {
     return user  
   }
 
-  // Валтдфция для Yandex Google
+  // Валидация для Yandex Google
   async validateOAuthLogin(req: any) {
     let user = await this.userService.getByEmail(req.user.email)
 
