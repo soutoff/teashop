@@ -71,27 +71,27 @@ export class AuthService {
 
   // Валидация для Yandex Google
   async validateOAuthLogin(req: any) {
-    let user = await this.userService.getByEmail(req.user.email)
+		let user = await this.userService.getByEmail(req.user.email)
 
-    if (!user) {
-      user = await this.prisma.user.create({
-        data: {
-          email: req.user.email,
-          name: req.user.name,
-          picture: req.user.picture,
-        },
-        include: {
-          stores: true,
-          favorites: true,
-          orders: true
-        }
-      })
+		if (!user) {
+			user = await this.prisma.user.create({
+				data: {
+					email: req.user.email,
+					name: req.user.name,
+					picture: req.user.picture
+				},
+				include: {
+					stores: true,
+					favorites: true,
+					orders: true
+				}
+			})
+		}
 
-      const tokens = this.issueTokens(user.id)
+		const tokens = this.issueTokens(user.id)
 
-      return {user, ...tokens}
-    }
-  }
+		return { user, ...tokens }
+	}
 
   // Методы добавления и удаления токенов
   addRefreshTokenToResponse (res: Response, refreshToken: string) {
