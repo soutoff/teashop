@@ -8,7 +8,7 @@ import { UserService } from "src/user/user.service";
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor (private configService: ConfigService, private userServcice: UserService) {
     super({
-      jwtFeromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: true,
       secretOrKey: configService.get('JWT_SECTRET')
     })

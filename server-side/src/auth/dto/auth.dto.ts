@@ -6,7 +6,7 @@ export class AuthDto {
   name: string
 
   @IsString({
-    message: 'Это поле обязательно'
+    message: 'Email обязателен'
   })
   @IsEmail()
   email: string
